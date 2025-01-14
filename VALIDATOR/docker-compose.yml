@@ -1,0 +1,18 @@
+services:
+  validacao:
+    build:
+      context: ./app # Diretório onde está o Dockerfile
+      dockerfile: Dockerfile
+    container_name: validacao_app
+    ports:
+      - "8002:8002"
+    volumes:
+      - ./app:/app # Sincronizar diretório local com o contêiner
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://notion_user:notion_password@notion_postgres:5432/notion_db"
+    networks:
+      - app_to_db_network
+
+networks:
+  app_to_db_network:
+    external: true

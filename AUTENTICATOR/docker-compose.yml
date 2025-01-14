@@ -1,0 +1,23 @@
+services:
+  fastapi_app:
+    build:
+      context: ./app
+      dockerfile: Dockerfile
+    container_name: autenticator
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./app:/app
+    environment:
+      DATABASE_URL: "postgresql+asyncpg://notion_user:notion_password@notion_postgres:5432/notion_db"
+      REDIRECT_URI: "https://bd7b-187-74-24-52.ngrok-free.app/oauth/callback"
+    networks:
+      - app_to_db_network
+      - app_to_ngrok_network
+
+networks:
+  app_to_db_network:
+    external: true # Rede externa configurada manualmente
+  app_to_ngrok_network:
+    external: true # Rede externa configurada manualmente
+
