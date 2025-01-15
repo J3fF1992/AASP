@@ -1,6 +1,35 @@
 import httpx
 from utils.logger import logger
 import re
+from sqlalchemy.dialects.postgresql import insert
+import datetime
+from models.models import UltimaIntimacaoProcessada
+from sqlalchemy.ext.asyncio import AsyncSession
+
+
+
+async def atualizar_ultima_data(sessao: AsyncSession, usuario_uuid: str, nova_ultima_data: datetime):
+    """Atualiza ou cria o registro da última data processada após o término."""
+    try:
+        # Certificar que `nova_ultima_data` é do tipo datetime
+        if isinstance(nova_ultima_data, str):
+            nova_ultima_data = datetime.fromisoformat(nova_ultima_data)
+
+        stmt = insert(UltimaIntimacaoProcessada).values(
+            usuario_uuid=usuario_uuid,
+            ultima_data_processada=nova_ultima_data
+        ).on_conflict_do_update(
+            index_elements=['usuario_uuid'],  # Coluna que define o conflito
+            set_={'ultima_data_processada': nova_ultima_data}  # Valor a ser atualizado
+        )
+
+        await sessao.execute(stmt)
+        await sessao.commit()
+        logger.info(f"Última data processada atualizada para {usuario_uuid}: {nova_ultima_data}")
+
+    except Exception as e:
+        logger.error(f"Erro ao atualizar última data processada para {usuario_uuid}: {e}")
+
 
 async def enviar_requisicao(client, url, headers, payload, tentativas=3):
     for tentativa in range(tentativas):

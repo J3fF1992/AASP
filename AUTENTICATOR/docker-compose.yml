@@ -20,4 +20,3 @@ networks:
     external: true # Rede externa configurada manualmente
   app_to_ngrok_network:
     external: true # Rede externa configurada manualmente
-

@@ -1,0 +1,25 @@
+# Diretórios de cache comuns
+/tmp
+/var/tmp
+/.cache
+/node_modules
+/bower_components
+
+# Arquivos de configuração de IDEs
+.idea
+.vscode
+
+# Arquivos gerados por ferramentas de build
+/build
+/dist
+*.log
+*.tmp
+
+# Arquivos de virtual environments
+venv/
+env/
+.env
+
+# Arquivos de configuração específicos
+config.local.yml
+secrets.yml

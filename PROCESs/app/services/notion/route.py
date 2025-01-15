@@ -5,12 +5,14 @@ from services.notion.lote import obter_dados_para_lote
 from services.notion_integration import enviar_dados_para_notion
 from utils.logger import logger
 from services.notion.lote import obter_dados_para_lote_associado
+from services.notion_integration import atualizar_ultima_data
 
-async def processar_intimacao_associado(payload: UserPayload):
+async def processar_intimacao_associado(payload: UserPayload, sessao):
     try:
         matricula = payload.matricula
         access_token = payload.access_token
         notion_database_id = payload.notion_database_id
+        user_uuid = payload.user_uuid
 
         logger.info(f"Iniciando processamento para Matrícula: {matricula}")
 
@@ -22,10 +24,8 @@ async def processar_intimacao_associado(payload: UserPayload):
             for i in range(1, 30)
         ]
 
-        # Dividir as datas em períodos de 5 dias
         periodos = [datas[i:i + 5] for i in range(0, len(datas), 5)]
-
-        semaphore = asyncio.Semaphore(3)  # Limitar o número de tarefas simultâneas
+        semaphore = asyncio.Semaphore(3)
 
         async def processar_periodo(periodo):
             async with semaphore:
@@ -40,13 +40,6 @@ async def processar_intimacao_associado(payload: UserPayload):
             for intimacao in resultado["intimacoes"]
         ]
 
-        erros = [
-            erro
-            for resultado in resultados
-            for erro in resultado["erros"]
-        ]
-
-        # Enviar dados em lote para o Notion
         if intimações_para_enviar:
             await enviar_dados_para_notion(
                 intimacoes=intimações_para_enviar,
@@ -54,16 +47,16 @@ async def processar_intimacao_associado(payload: UserPayload):
                 notion_database_id=notion_database_id
             )
 
+            ultima_data = max(
+                datetime.fromisoformat(intimacao['jornal']['dataTratamento'])
+                for intimacao in intimações_para_enviar
+            )
+            await atualizar_ultima_data(sessao, user_uuid, ultima_data)
+
         logger.info(f"Processamento concluído para Matrícula: {matricula}")
         return {
             "message": f"Processamento concluído para Matrícula: {matricula}",
-            "detalhes": {
-                "dias_processados": len(datas),
-                "periodos_processados": len(periodos),
-                "sucessos": len(intimações_para_enviar),
-                "erros": len(erros),
-                "erros_detalhados": erros
-            }
+            "sucessos": len(intimações_para_enviar)
         }
 
     except Exception as e:
@@ -71,7 +64,8 @@ async def processar_intimacao_associado(payload: UserPayload):
         return {"error": f"Erro ao processar Matrícula {matricula}: {str(e)}"}
 
 
-async def processar_intimacao_empresa(payload: UserPayload):
+
+async def processar_intimacao_empresa(payload: UserPayload,sessao):
     try:
         matricula = payload.matricula
         codigo_aasp = payload.codigo_aasp
@@ -85,7 +79,7 @@ async def processar_intimacao_empresa(payload: UserPayload):
             {"dia": (hoje - timedelta(days=i)).day,
              "mes": (hoje - timedelta(days=i)).month,
              "ano": (hoje - timedelta(days=i)).year}
-            for i in range(1, 10)
+            for i in range(1, 2)
         ]
 
         # Dividir as datas em períodos de 5 dias
@@ -128,7 +122,8 @@ async def processar_intimacao_empresa(payload: UserPayload):
                 "periodos_processados": len(periodos),
                 "sucessos": len(intimações_para_enviar),
                 "erros": len(erros),
-                "erros_detalhados": erros
+                "erros_detalhados": erros,
+                "periodo": periodos
             }
         }
 

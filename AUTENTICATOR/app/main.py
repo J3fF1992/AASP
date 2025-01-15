@@ -25,6 +25,6 @@ if __name__ == "__main__":
     uvicorn.run(
         "main:app",  # Refere-se ao objeto `app` neste arquivo
         host="0.0.0.0",  # Escuta em todas as interfaces de rede
-        port=8000,  # Porta onde o servidor será iniciado
+        port=3030,  # Porta onde o servidor será iniciado
         reload=True  # Habilita o recarregamento automático ao alterar o código
     )

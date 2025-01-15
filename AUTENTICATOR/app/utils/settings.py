@@ -7,4 +7,3 @@ REDIRECT_URI = os.getenv("REDIRECT_URI", "https://bd7b-187-74-24-52.ngrok-free.a
 NOTION_VERSION = os.getenv("NOTION_VERSION", "2022-06-28")
 DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+asyncpg://notion_user:notion_password@notion_postgres:5432/notion_db") #docker***
 # DATABASE_URL = os.getenv("DATABASE_URL", "postgresql+asyncpg://notion_user:notion_password@localhost:5432/notion_db") #teste local
-

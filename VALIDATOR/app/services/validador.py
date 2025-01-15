@@ -163,10 +163,11 @@ class NotionDatabaseClient:
                 "access_token": self.access_token,
                 "notion_database_id": notion_record.notion_database_id,
                 "tipo": user.tipo,
+                "user_uuid":user.uuid
             }
             if user.tipo == "empresa":
                 payload["codigo_aasp"] = user.codigo_aasp
-                endpoint = "http://localhost:8003/empresa"
+                endpoint ="http://localhost:8003/empresa"
             else:
                 endpoint = "http://localhost:8003/associado"
 

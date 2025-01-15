@@ -29,6 +29,7 @@ class UserPayload(BaseModel):
     access_token: str
     notion_database_id: str
     tipo: str
+    user_uuid: str
 
 class UserPayloadAssociado(BaseModel):
     matricula: str    
