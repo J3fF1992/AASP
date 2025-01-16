@@ -1,0 +1,69 @@
+{
+    "intimacoes": [
+        {
+            "jornal": {
+                "nomeJornal": "TJSP",
+                "dataTratamento": "2024-12-18T10:38:04.537",
+                "dataDisponibilizacao_Publicacao": "2024-12-19T00:00:00",
+                "termoReferenciaData": "Disponibilização"
+            },
+            "textoPublicacao": "Processo 0004473-79.2024.8.26.0554 - Produção Antecipada da Prova - Provas em geral - Oxiteno S A Indústria e Comércio \n- - CETESB COMPANHIA AMBIENTAL DO ESTADO DE SAO PAULO - Vistos. Fls. 1397/1398: Remetam-se os autos com vista \nà 6ª Promotoria de Justiça de Mauá, para que se manifeste nos termos da decisão de fls. 1392. Int. - ADV: ADRIANA MATHIAS \nBAPTISTA (OAB 129266/SP), DANIELA DUTRA SOARES (OAB 202531/SP), FABIO FERREIRA DE AQUINO (OAB 425954/SP), \nMÔNICA MENDONÇA COSTA (OAB 195829/SP)",
+            "titulo": "MAUÁ;Cível;1ª Vara Cível",
+            "numeroPublicacao": 124,
+            "numeroArquivo": 398,
+            "cabecalho": "",
+            "rodape": null,
+            "codigoRelacionamento": 9252434482,
+            "numeroUnicoProcesso": "0004473-79.2024.8.26.0554"
+        },
+        {
+            "jornal": {
+                "nomeJornal": "TJSP",
+                "dataTratamento": "2024-12-18T10:38:04.537",
+                "dataDisponibilizacao_Publicacao": "2024-12-19T00:00:00",
+                "termoReferenciaData": "Disponibilização"
+            },
+            "textoPublicacao": "Processo 1022852-29.2022.8.26.0002 - Monitória - Cheque - Evaldo Rato - Vistos. Intime-se a parte requerente, por carta, \nconsoante o artigo 485, § 1o, do Código de Processo Civil, a fim de providenciar o regular andamento do processo, no prazo de \ncinco dias, sob pena de extinção, sem resolução de mérito. Intime-se. - ADV: FABIO FERREIRA DE AQUINO (OAB 425954/SP)",
+            "titulo": "Fóruns Regionais e Distritais;II - Santo Amaro e Ibirapuera;Cível;12ª Vara Cível",
+            "numeroPublicacao": 85,
+            "numeroArquivo": 3630,
+            "cabecalho": "JUÍZO DE DIREITO DA 12ª VARA CÍVEL\nEDITAL DE INTIMAÇÃO DE PARTES E ADVOGADOS\n\n\r\n",
+            "rodape": null,
+            "codigoRelacionamento": 9252862048,
+            "numeroUnicoProcesso": "1022852-29.2022.8.26.0002"
+        },
+        {
+            "jornal": {
+                "nomeJornal": "TJSP",
+                "dataTratamento": "2024-12-18T10:38:04.537",
+                "dataDisponibilizacao_Publicacao": "2024-12-19T00:00:00",
+                "termoReferenciaData": "Disponibilização"
+            },
+            "textoPublicacao": "Processo 1022852-29.2022.8.26.0002 - Monitória - Cheque - Evaldo Rato - Vistos. Intime-se a parte requerente, por carta, \nconsoante o artigo 485, § 1o, do Código de Processo Civil, a fim de providenciar o regular andamento do processo, no prazo de \ncinco dias, sob pena de extinção, sem resolução de mérito. Intime-se. - ADV: FABIO FERREIRA DE AQUINO (OAB 425954/SP)",
+            "titulo": "Fóruns Regionais e Distritais;II - Santo Amaro e Ibirapuera;Cível;12ª Vara Cível",
+            "numeroPublicacao": 86,
+            "numeroArquivo": 3818,
+            "cabecalho": "JUÍZO DE DIREITO DA 12ª VARA CÍVEL\nEDITAL DE INTIMAÇÃO DE PARTES E ADVOGADOS\n\n\r\n",
+            "rodape": null,
+            "codigoRelacionamento": 9252991717,
+            "numeroUnicoProcesso": "1022852-29.2022.8.26.0002"
+        },
+        {
+            "jornal": {
+                "nomeJornal": "TJSP",
+                "dataTratamento": "2024-12-11T09:30:02.057",
+                "dataDisponibilizacao_Publicacao": "2024-12-12T00:00:00",
+                "termoReferenciaData": "Disponibilização"
+            },
+            "textoPublicacao": "Processo 1019278-54.2023.8.26.0554 - Produção Antecipada da Prova - Provas em geral - Braskem S/A (Unidade Q3) - - \nCETESB COMPANHIA AMBIENTAL DO ESTADO DE SÃO PAULO e outros - Vistos. Fls. 3232/3234: sobre os embargos de \ndeclaração, manifeste-se o Ministério Público no prazo de dez dias (já considerada a prerrogativa de contagem em dobro). Após, \ntornem conclusos. Intime-se. - ADV: JULIANA FLAVIA MATTEI (OAB 321767/SP), JULIANA FLAVIA MATTEI (OAB 321767/\nSP), JULIANA FLAVIA MATTEI (OAB 321767/SP), RITA MARIA BORGES FRANCO (OAB 237395/SP), RITA MARIA BORGES \nFRANCO (OAB 237395/SP), RITA MARIA BORGES FRANCO (OAB 237395/SP), DANIELA DUTRA SOARES (OAB 202531/SP)",
+            "titulo": "SANTO ANDRÉ;1ª Vara da Fazenda Pública",
+            "numeroPublicacao": 31,
+            "numeroArquivo": 3897,
+            "cabecalho": "",
+            "rodape": null,
+            "codigoRelacionamento": 9226081571,
+            "numeroUnicoProcesso": "1019278-54.2023.8.26.0554"
+        }
+    ],
+    "erros": []
+}

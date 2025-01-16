@@ -71,6 +71,7 @@ async def processar_intimacao_empresa(payload: UserPayload,sessao):
         codigo_aasp = payload.codigo_aasp
         access_token = payload.access_token
         notion_database_id = payload.notion_database_id
+        user_uuid = payload.user_uuid
 
         logger.info(f"Iniciando processamento para Matrícula: {matricula}, Código: {codigo_aasp}")
 
@@ -79,7 +80,7 @@ async def processar_intimacao_empresa(payload: UserPayload,sessao):
             {"dia": (hoje - timedelta(days=i)).day,
              "mes": (hoje - timedelta(days=i)).month,
              "ano": (hoje - timedelta(days=i)).year}
-            for i in range(1, 2)
+            for i in range(2, 3)
         ]
 
         # Dividir as datas em períodos de 5 dias
@@ -113,20 +114,18 @@ async def processar_intimacao_empresa(payload: UserPayload,sessao):
                 access_token=access_token,
                 notion_database_id=notion_database_id
             )
+            ultima_data = max(
+                datetime.fromisoformat(intimacao['jornal']['dataTratamento'])
+                for intimacao in intimações_para_enviar
+            )
+            await atualizar_ultima_data(sessao, user_uuid, ultima_data)
 
-        logger.info(f"Processamento concluído para Matrícula: {matricula}, Código: {codigo_aasp}")
+        logger.info(f"Processamento concluído para Matrícula: {matricula}")
         return {
-            "message": f"Processamento concluído para Matrícula: {matricula}, Código: {codigo_aasp}",
-            "detalhes": {
-                "dias_processados": len(datas),
-                "periodos_processados": len(periodos),
-                "sucessos": len(intimações_para_enviar),
-                "erros": len(erros),
-                "erros_detalhados": erros,
-                "periodo": periodos
-            }
+            "message": f"Processamento concluído para Matrícula: {matricula}",
+            "sucessos": len(intimações_para_enviar)
         }
 
     except Exception as e:
-        logger.error(f"Erro ao processar Matrícula {matricula}, Código {codigo_aasp}: {e}", exc_info=True)
-        return {"error": f"Erro ao processar Matrícula {matricula}, Código {codigo_aasp}: {str(e)}"}
+        logger.error(f"Erro ao processar Matrícula {matricula}: {e}", exc_info=True)
+        return {"error": f"Erro ao processar Matrícula {matricula}: {str(e)}"}

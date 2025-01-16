@@ -31,11 +31,11 @@ class UserPayload(BaseModel):
     tipo: str
     user_uuid: str
 
-class UserPayloadAssociado(BaseModel):
-    matricula: str    
-    access_token: str
-    notion_database_id: str
-    tipo: str
+# class UserPayloadAssociado(BaseModel):
+#     matricula: str    
+#     access_token: str
+#     notion_database_id: str
+#     tipo: str
 
 class NotionAPIUtils:
     @staticmethod
@@ -48,40 +48,40 @@ class NotionAPIUtils:
         return valor.strip().lower()  # Remove espaços extras e converte para minúsculas
 
 
-async def validar_payload(payload: UserPayload = Body(...)):
-    """
-    Valida e normaliza o payload recebido.
-    """
-    # Log do payload recebido
-    logger.info(f"Payload recebido: {payload.dict()}")
+# async def validar_payload(payload: UserPayload = Body(...)):
+#     """
+#     Valida e normaliza o payload recebido.
+#     """
+#     Log do payload recebido
+#     logger.info(f"Payload recebido: {payload.dict()}")
 
-    try:
-        # Validar e normalizar os campos
-        matricula = payload.matricula.strip()
-        tipo = payload.tipo.strip().lower()
-        codigo_aasp = payload.codigo_aasp.strip() if payload.codigo_aasp else None
+#     try:
+#         Validar e normalizar os campos
+#         matricula = payload.matricula.strip()
+#         tipo = payload.tipo.strip().lower()
+#         codigo_aasp = payload.codigo_aasp.strip() if payload.codigo_aasp else None
 
-        # Log do que foi processado
-        logger.info(f"Valores processados - Matrícula: {matricula}, Tipo: {tipo}, Código AASP: {codigo_aasp}")
+#         Log do que foi processado
+#         logger.info(f"Valores processados - Matrícula: {matricula}, Tipo: {tipo}, Código AASP: {codigo_aasp}")
 
-        # Validação específica
-        if tipo not in ["empresa", "associado"]:
-            raise HTTPException(
-                status_code=422,
-                detail="Tipo inválido. Valores permitidos: 'empresa', 'associado'."
-            )
+#         Validação específica
+#         if tipo not in ["empresa", "associado"]:
+#             raise HTTPException(
+#                 status_code=422,
+#                 detail="Tipo inválido. Valores permitidos: 'empresa', 'associado'."
+#             )
 
-        if tipo == "empresa" and not codigo_aasp:
-            raise HTTPException(
-                status_code=422,
-                detail="Para 'empresa', o campo 'codigo_aasp' é obrigatório."
-            )
+#         if tipo == "empresa" and not codigo_aasp:
+#             raise HTTPException(
+#                 status_code=422,
+#                 detail="Para 'empresa', o campo 'codigo_aasp' é obrigatório."
+#             )
 
-        return payload.dict()
+#         return payload.dict()
 
-    except ValidationError as ve:
-        logger.error(f"Erro de validação do payload: {ve.errors()}")
-        raise HTTPException(status_code=422, detail=ve.errors())
-    except Exception as e:
-        logger.error(f"Erro inesperado ao validar payload: {str(e)}")
-        raise HTTPException(status_code=500, detail="Erro interno do servidor")
+#     except ValidationError as ve:
+#         logger.error(f"Erro de validação do payload: {ve.errors()}")
+#         raise HTTPException(status_code=422, detail=ve.errors())
+#     except Exception as e:
+#         logger.error(f"Erro inesperado ao validar payload: {str(e)}")
+#         raise HTTPException(status_code=500, detail="Erro interno do servidor")
