@@ -1,2 +1,2 @@
-DATABASE_URL = "postgresql+asyncpg://notion_user:notion_password@localhost:5432/notion_db" #localhost
-# DATABASE_URL = "postgresql+asyncpg://notion_user:notion_password@notion_postgres:5432/notion_db"#docker***
+# DATABASE_URL = "postgresql+asyncpg://notion_user:notion_password@localhost:5432/notion_db" #localhost
+DATABASE_URL = "postgresql+asyncpg://notion_user:notion_password@notion_postgres:5432/notion_db"#docker***
