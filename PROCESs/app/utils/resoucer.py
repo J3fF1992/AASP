@@ -27,6 +27,7 @@ class UserPayload(BaseModel):
     matricula: str
     codigo_aasp: Optional[str] = None
     access_token: str
+    user_uuid: str
     notion_database_id: str
     tipo: str
 
